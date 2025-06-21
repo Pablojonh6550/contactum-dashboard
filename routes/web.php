@@ -14,8 +14,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [App\Http\Controllers\Contact\ContactController::class, 'index'])->name('index');
+Route::get('/login', [App\Http\Controllers\AuthController::class, 'login'])->name('auth.login');
+Route::post('/login', [App\Http\Controllers\AuthController::class, 'authenticate'])->name('auth.authenticate');
+Route::get('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('auth.logout')->middleware('auth');
 
-Route::group(['prefix' => 'contact', 'as' => 'contact.'], function () {
+Route::group(['prefix' => 'contact', 'as' => 'contact.', 'middleware' => ['auth']], function () {
     Route::get('/create', [App\Http\Controllers\Contact\ContactController::class, 'create'])->name('create');
     Route::post('/store', [App\Http\Controllers\Contact\ContactController::class, 'store'])->name('store');
     Route::get('/edit/{id}', [App\Http\Controllers\Contact\ContactController::class, 'edit'])->name('edit');
