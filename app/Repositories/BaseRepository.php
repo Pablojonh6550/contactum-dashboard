@@ -68,6 +68,30 @@ abstract class BaseRepository implements BaseInterface
      */
     public function delete(int $id): bool
     {
-        return $this->model->destroy($id);
+        $contact = $this->model->findOrFail($id);
+        return $contact->delete();
+    }
+
+    /**
+     * Retrieve all soft deleted records from the model.
+     *
+     * @return Collection A collection of soft deleted model instances.
+     */
+    public function getDeleted(): Collection
+    {
+        return $this->model->onlyTrashed()->get();
+    }
+
+    /**
+     * Restore a soft deleted model record by its ID.
+     *
+     * @param int $id The ID of the model to restore.
+     * @return bool True if the restoration was successful, false otherwise.
+     */
+    public function restore(int $id): bool
+    {
+        $contact = $this->model->withTrashed()->findOrFail($id);
+
+        return $contact->restore();
     }
 }

@@ -13,4 +13,6 @@ interface BaseInterface
     public function create(array $data): Authenticatable|Model;
     public function update(int $id, array $data): bool;
     public function delete(int $id): bool;
+    public function getDeleted(): Collection;
+    public function restore(int $id): bool;
 }
