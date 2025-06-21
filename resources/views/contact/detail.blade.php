@@ -26,7 +26,9 @@
                         <input type="text" class="form-control" id="email" name="email" disabled
                             value="{{ $contact->email }}">
 
-                        <a href="{{ route('index') }}" class="btn btn-secondary mt-4 w-100">Voltar</a>
+                        <a href="{{ route('contact.edit', $contact->id) }}" class="btn btn-warning mt-4 w-100">Editar</a>
+                        <a href="{{ route('contact.delete', $contact->id) }}" class="btn btn-danger mt-2 w-100">Excluir</a>
+                        <a href="{{ route('index') }}" class="btn btn-secondary mt-2 w-100">Voltar</a>
                     </div>
                 </div>
             </div>
