@@ -6,10 +6,13 @@
     <section class="w-100 min-vh-100 d-flex justify-content-center align-items-center">
         <div class="container">
             <div class="row d-flex justify-content-center align-items-center">
-                <div class="col-10 mb-4 d-flex justify-content-end align-items-center">
+                <div class="col-10 mb-4 d-flex justify-content-between align-items-center">
+                    <h4>Lista de Contatos</h4>
                     @if (Auth::check())
-                        <a href="{{ route('contact.create') }}" class="btn btn-primary">Adicionar contato</a>
-                        <a href="{{ route('auth.logout') }}" class="btn btn-primary ms-2">Logout</a>
+                        <div>
+                            <a href="{{ route('contact.create') }}" class="btn btn-primary">Adicionar contato</a>
+                            <a href="{{ route('auth.logout') }}" class="btn btn-primary ms-2">Logout</a>
+                        </div>
                     @else
                         <a href="{{ route('auth.login') }}" class="btn btn-primary">Login</a>
                     @endif
@@ -36,6 +39,8 @@
                                     <td>{{ $contact->email }}</td>
                                     @if (Auth::check())
                                         <td>
+                                            <a href="{{ route('contact.detail', $contact->id) }}"
+                                                class="btn btn-info">Detalhes</a>
                                             <a href="{{ route('contact.edit', $contact->id) }}"
                                                 class="btn btn-warning">Editar</a>
                                             <a href="{{ route('contact.delete', $contact->id) }}"

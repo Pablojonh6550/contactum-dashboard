@@ -21,6 +21,7 @@ Route::get('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->n
 Route::group(['prefix' => 'contact', 'as' => 'contact.', 'middleware' => ['auth']], function () {
     Route::get('/create', [App\Http\Controllers\Contact\ContactController::class, 'create'])->name('create');
     Route::post('/store', [App\Http\Controllers\Contact\ContactController::class, 'store'])->name('store');
+    Route::get('/detail/{id}', [App\Http\Controllers\Contact\ContactController::class, 'detail'])->name('detail');
     Route::get('/edit/{id}', [App\Http\Controllers\Contact\ContactController::class, 'edit'])->name('edit');
     Route::post('/update/{id}', [App\Http\Controllers\Contact\ContactController::class, 'update'])->name('update');
     Route::get('/delete/{id}', [App\Http\Controllers\Contact\ContactController::class, 'delete'])->name('delete');

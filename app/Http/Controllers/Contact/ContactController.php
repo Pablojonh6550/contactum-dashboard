@@ -62,6 +62,23 @@ class ContactController extends Controller
         }
     }
 
+    public function detail(int $id): RedirectResponse|View
+    {
+        try {
+            $contact = $this->contactService->findById($id);
+            if ($contact)
+                return view("contact.detail", compact('contact'));
+            return back()->with('error', 'Usuário não encontrado');
+        } catch (\Exception $e) {
+            Log::error('Erro ao tentar carregar usuário', [
+                'exception' => $e->getMessage(),
+                'trace' => $e->getTraceAsString(),
+            ]);
+
+            return back()->with('error', $e->getMessage());
+        }
+    }
+
     public function edit(int $id): RedirectResponse|View
     {
         try {
