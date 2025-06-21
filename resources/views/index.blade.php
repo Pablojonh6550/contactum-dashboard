@@ -7,7 +7,12 @@
         <div class="container">
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="col-10 mb-4 d-flex justify-content-end align-items-center">
-                    <a href="{{ route('contact.create') }}" class="btn btn-primary">Adicionar contato</a>
+                    @if (Auth::check())
+                        <a href="{{ route('contact.create') }}" class="btn btn-primary">Adicionar contato</a>
+                        <a href="{{ route('auth.logout') }}" class="btn btn-primary ms-2">Logout</a>
+                    @else
+                        <a href="{{ route('auth.login') }}" class="btn btn-primary">Login</a>
+                    @endif
                 </div>
                 <div class="col-10">
                     <table class="table table-dark table-striped">
@@ -17,7 +22,9 @@
                                 <th scope="col">Nome</th>
                                 <th scope="col">Contato</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Ações</th>
+                                @if (Auth::check())
+                                    <th scope="col">Ações</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -27,12 +34,14 @@
                                     <td>{{ $contact->name }}</td>
                                     <td>{{ $contact->contact_number }}</td>
                                     <td>{{ $contact->email }}</td>
-                                    <td>
-                                        <a href="{{ route('contact.edit', $contact->id) }}"
-                                            class="btn btn-warning">Editar</a>
-                                        <a href="{{ route('contact.delete', $contact->id) }}"
-                                            class="btn btn-danger">Excluir</a>
-                                    </td>
+                                    @if (Auth::check())
+                                        <td>
+                                            <a href="{{ route('contact.edit', $contact->id) }}"
+                                                class="btn btn-warning">Editar</a>
+                                            <a href="{{ route('contact.delete', $contact->id) }}"
+                                                class="btn btn-danger">Excluir</a>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
                         </tbody>
