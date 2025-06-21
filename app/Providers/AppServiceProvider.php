@@ -8,6 +8,8 @@ use App\Repositories\BaseRepository;
 use App\Interfaces\BaseInterface;
 use App\Interfaces\Contact\ContactInterface;
 use App\Repositories\Contact\ContactRepository;
+use App\Interfaces\User\UserInterface;
+use App\Repositories\User\UserRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(BaseInterface::class, BaseRepository::class);
         $this->app->bind(ContactInterface::class, ContactRepository::class);
+        $this->app->bind(UserInterface::class, UserRepository::class);
     }
 
     /**
