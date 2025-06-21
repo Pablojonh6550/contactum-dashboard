@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Contactum | Lista de Contatos')
+@section('title', 'Contactum | Detalhes do Contatos')
 
 @section('content')
     <section class="w-100 min-vh-100 d-flex justify-content-center align-items-center">
