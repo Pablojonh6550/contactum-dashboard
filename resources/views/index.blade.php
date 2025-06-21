@@ -11,7 +11,8 @@
                     @if (Auth::check())
                         <div>
                             <a href="{{ route('contact.create') }}" class="btn btn-primary">Adicionar contato</a>
-                            <a href="{{ route('auth.logout') }}" class="btn btn-primary ms-2">Logout</a>
+                            <a href="{{ route('contact.getDelete') }}" class="btn btn-danger ms-2">Deletados</a>
+                            <a href="{{ route('auth.logout') }}" class="btn btn-secondary ms-2">Logout</a>
                         </div>
                     @else
                         <a href="{{ route('auth.login') }}" class="btn btn-primary">Login</a>

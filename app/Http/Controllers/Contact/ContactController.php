@@ -149,7 +149,7 @@ class ContactController extends Controller
         try {
             $result = $this->contactService->restore($id);
             if ($result)
-                return redirect("index")->with('success', 'Usuário restaurado com sucesso');
+                return redirect()->route('index')->with('success', 'Usuário restaurado com sucesso');
             return back()->with('error', 'Usuário nao encontrado');
         } catch (\Exception $e) {
             Log::error('Erro ao tentar restaurar usuário', [
